@@ -36,18 +36,5 @@ public class Runner
         Assert.AreEqual(3559, Solve(File.ReadAllText("input"), 14));
     }
 
-    private static int Solve(string input, int length)
-    {
-        for (var i = length - 1; i < input.Length; i++)
-        {
-            var testMarker = input.Substring(i - length + 1, length);
-
-            if (testMarker.Distinct().Count() == length)
-            {
-                return i + 1;
-            }
-        }
-
-        throw new Exception();
-    }
+    private static int Solve(string input, int length) => NaiveSolver.Solve(input, length);
 }
