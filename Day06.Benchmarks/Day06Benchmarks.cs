@@ -5,41 +5,35 @@ namespace Day06.Benchmarks;
 [MemoryDiagnoser]
 public class Day06Benchmarks
 {
+    private string _inputFile;
     
+    [GlobalSetup]
+    public void GlobalSetup() => _inputFile = File.ReadAllText("input");
     
-    [Benchmark(Baseline = true, Description = "With 4 length")]
-    public void SolveShortWithNaiveSolver()
+    [Params(4, 14)]
+    public int Length { get; set; }
+
+    [Benchmark(Baseline = true, Description = "Naive")]
+    public void SolveWithNaiveSolver()
     {
-        var _ = NaiveSolver.Solve(File.ReadAllText("input"), 4);
+        var _ = NaiveSolver.Solve(_inputFile, Length);
     }
     
-    [Benchmark(Description = "With 4 length and manual check")]
-    public void SolveShortWithNaiveSolverAndManualCheck()
+    [Benchmark(Description = "Manual check")]
+    public void SolveWithNaiveSolverAndManualCheck()
     {
-        var _ = NaiveWithManualChecks.Solve(File.ReadAllText("input"), 4);
+        var _ = NaiveWithManualChecks.Solve(_inputFile, Length);
     }
 
-    [Benchmark(Description = "With 4 length via span")]
-    public void SolveShortWithSpanSolver()
+    [Benchmark(Description = "Via span")]
+    public void SolveWithSpanSolver()
     {
-        var _ = SpanSolver.Solve(File.ReadAllText("input"), 4);
+        var _ = SpanSolver.Solve(_inputFile, Length);
     }
     
-    [Benchmark(Description = "With 14 length")]
-    public void SolveLongWithNaiveSolver()
+    [Benchmark(Description = "Via span + forward shift")]
+    public void SolveWithSpanSolverGen2()
     {
-        var _ = NaiveSolver.Solve(File.ReadAllText("input"), 14);
-    }
-    
-    [Benchmark(Description = "With 14 length and manual check")]
-    public void SolveLongWithNaiveSolverAndManualCheck()
-    {
-        var _ = NaiveWithManualChecks.Solve(File.ReadAllText("input"), 14);
-    }
-    
-    [Benchmark(Description = "With 14 length via span")]
-    public void SolveLongWithSpanSolver()
-    {
-        var _ = SpanSolver.Solve(File.ReadAllText("input"), 14);
+        var _ = SpanSolverGen2.Solve(_inputFile, Length);
     }
 }
