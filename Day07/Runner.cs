@@ -16,10 +16,18 @@ public class Runner
 
     [Test]
     public void ActualInput_TaskTwo() => Assert.AreEqual(545729, Solve("input", new TaskTwoSolver()));
+
+    [Test]
+    public void Example_TaskTwo_AnotherSolver() =>
+        Assert.AreEqual(24933642, Solve("demoInput", new TaskTwoSolverWithBetterAgg()));
+
+    [Test]
+    public void ActualInput_TaskTwo_AnotherSolver() =>
+        Assert.AreEqual(545729, Solve("input", new TaskTwoSolverWithBetterAgg()));
     
     private static long Solve(string inputFileName, ISolver solver)
     {
-        var root = InputProcessor.GetFileSystem(inputFileName);
+        var root = InputProcessor.GetFileSystem(File.ReadAllLines(inputFileName));
 
         return solver.Aggregate(root.Find(t => solver.GetFilterPredicate(root)(t)));
     }
