@@ -6,9 +6,15 @@ public class Runner
 {
     [Test]
     public void Example_TaskOne() => Assert.AreEqual(21, Solve_TaskOne("demoInput"));
+    
+    [Test]
+    public void Example_TaskOne_Alternative() => Assert.AreEqual(21, Solve_TaskOne_Alternative("demoInput"));
 
     [Test]
     public void ActualInput_TaskOne() => Assert.AreEqual(1733, Solve_TaskOne("input"));
+    
+    [Test]
+    public void ActualInput_TaskOne_Alternative() => Assert.AreEqual(1733, Solve_TaskOne_Alternative("input"));
 
     [Test]
     public void Example_TaskTwo() => Assert.AreEqual(8, Solve_TaskTwo("demoInput"));
@@ -17,6 +23,8 @@ public class Runner
     public void ActualInput_TaskTwo() => Assert.AreEqual(284648, Solve_TaskTwo("input"));
 
     private static int Solve_TaskOne(string fileName) => Solve(fileName, NaiveSolver.CountVisibleTrees);
+
+    private static int Solve_TaskOne_Alternative(string fileName) => Solve(fileName, NeighbourSolver.CountVisibleTrees);
 
     private static int Solve_TaskTwo(string fileName) => Solve(fileName, NaiveSolver.CountScenicScore);
 
