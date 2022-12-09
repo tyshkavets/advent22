@@ -2,14 +2,6 @@ namespace Day08;
 
 public class Solver<T>
 {
-    private readonly List<(int Dx, int Dy)> _visibilityVectors = new()
-    {
-        (1, 0),
-        (0, 1),
-        (-1, 0),
-        (0, -1)
-    };
-
     private readonly T _accumulatorSeed;
     private readonly Func<T, T, T> _accumulator;
     private readonly Func<IEnumerable<T>, int> _resultAgg;
@@ -46,7 +38,8 @@ public class Solver<T>
         {
             for (var j = 0; j < columns; j++)
             {
-                resultMatrix[i][j] = _visibilityVectors
+                resultMatrix[i][j] = CardinalDirection
+                    .AllDirections
                     .Select(v => GetSingleItemScore(matrix, i, j, v))
                     .Aggregate(_accumulatorSeed, _accumulator);
             }
@@ -55,7 +48,7 @@ public class Solver<T>
         return _resultAgg(resultMatrix.SelectMany(r => r));
     }
 
-    private T GetSingleItemScore(byte[][] matrix, int currX, int currY, (int Dx, int Dy) direction)
+    private T GetSingleItemScore(byte[][] matrix, int currX, int currY, CardinalDirection direction)
     {
         var scorer = new SingleItemCalculator<T>(_singleItemSeed, _singleItemAggregation);
 

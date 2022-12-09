@@ -11,7 +11,7 @@ public class SingleItemCalculator<T>
         _aggregation = aggregation;
     }
 
-    public T Solve(byte[][] matrix, int currX, int currY, (int Dx, int Dy) direction)
+    public T Solve(byte[][] matrix, int currX, int currY, CardinalDirection direction)
     {
         var rows = matrix.Length;
         var columns = matrix[0].Length;
