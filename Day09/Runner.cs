@@ -12,6 +12,9 @@ public class Runner
     
     [Test]
     public void Example_TaskTwo() => Assert.AreEqual(1, Solve_TaskTwo("demoInput"));
+
+    [Test]
+    public void LargerExample_TaskTwo() => Assert.AreEqual(36, Solve_TaskTwo("largeDemoInput"));
     
     [Test]
     public void ActualInput_TaskTwo() => Assert.AreEqual(2485, Solve_TaskTwo("input"));

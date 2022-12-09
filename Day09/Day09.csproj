@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <Content CopyToOutputDirectory="Always" Include="demoInput" />
+        <Content CopyToOutputDirectory="Always" Include="largeDemoInput" />
         <Content CopyToOutputDirectory="Always" Include="input" />
     </ItemGroup>
 
