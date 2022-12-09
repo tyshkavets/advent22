@@ -2,30 +2,6 @@ namespace Day09;
 
 public class NaiveSolver
 {
-    public static int UniquePositionCounter(IEnumerable<string> instructions)
-    {
-        var positions = new HashSet<(int, int)>();
-
-        var head = new CellPosition(0, 0);
-        var tail = new CellPosition(0, 0);
-
-        var stepper = new Stepper();
-
-        foreach (var instruction in instructions)
-        {
-            var (moveDeltaX, moveDeltaY) = GetMove(instruction[0]);
-            var steps = int.Parse(instruction[2..]);
-
-            for (var i = 0; i < steps; i++)
-            {
-                (head, tail) = stepper.GetStep(head, tail, moveDeltaX, moveDeltaY);
-                positions.Add((tail.X, tail.Y));
-            }
-        }
-
-        return positions.Count;
-    }
-
     public static int UniquePositionCounter(IEnumerable<string> instructions, int segmentCount)
     {
         var positions = new HashSet<(int, int)>();

@@ -19,13 +19,10 @@ public class Runner
     [Test]
     public void ActualInput_TaskTwo() => Assert.AreEqual(2485, Solve_TaskTwo("input"));
 
-    private int Solve_TaskOne(string fileName)
-    {
-        return NaiveSolver.UniquePositionCounter(File.ReadAllLines(fileName));
-    }
-    
-    private int Solve_TaskTwo(string fileName)
-    {
-        return NaiveSolver.UniquePositionCounter(File.ReadAllLines(fileName), 10);
-    }
+    private int Solve_TaskOne(string fileName) => Solve(fileName, 2);
+
+    private int Solve_TaskTwo(string fileName) => Solve(fileName, 10);
+
+    private int Solve(string fileName, int segments) =>
+        NaiveSolver.UniquePositionCounter(File.ReadAllLines(fileName), segments);
 }
