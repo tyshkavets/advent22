@@ -2,7 +2,11 @@ namespace Day09;
 
 public class NaiveSolver
 {
-    public static int UniquePositionCounter(IEnumerable<string> instructions, int segmentCount)
+    private readonly IStepper _stepper;
+
+    public NaiveSolver(IStepper stepper) => _stepper = stepper;
+    
+    public int UniquePositionCounter(IEnumerable<string> instructions, int segmentCount)
     {
         var positions = new HashSet<(int, int)>();
 
@@ -11,8 +15,6 @@ public class NaiveSolver
         {
             segments[i] = new CellPosition(0, 0);
         }
-
-        var stepper = new Stepper();
 
         foreach (var instruction in instructions)
         {
@@ -34,7 +36,7 @@ public class NaiveSolver
                     // segments[j+1] is tail
                     var previousTail = new CellPosition(segments[j + 1].X, segments[j + 1].Y);
                     (segments[j], segments[j + 1]) =
-                        stepper.GetStep(segments[j], segments[j + 1], moveDeltaX, moveDeltaY, j == 0);
+                        _stepper.GetStep(segments[j], segments[j + 1], moveDeltaX, moveDeltaY, j == 0);
                     (moveDeltaX, moveDeltaY) = (segments[j + 1].X - previousTail.X, segments[j + 1].Y - previousTail.Y);
                 }
                 
