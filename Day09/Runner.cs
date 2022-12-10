@@ -24,5 +24,5 @@ public class Runner
     private static int Solve_TaskTwo(string fileName) => Solve(fileName, 10);
 
     private static int Solve(string fileName, int segments) =>
-        new NaiveSolver(new Stepper()).UniquePositionCounter(File.ReadAllLines(fileName), segments);
+        new NaiveSolver(new CachingStepper()).UniquePositionCounter(File.ReadAllLines(fileName), segments);
 }
