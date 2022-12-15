@@ -7,6 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Content CopyToOutputDirectory="Always" Include="demoInput" />
+        <Content CopyToOutputDirectory="Always" Include="input" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
       <PackageReference Include="NUnit" Version="3.13.3" />
       <PackageReference Include="Pidgin" Version="3.2.0" />
